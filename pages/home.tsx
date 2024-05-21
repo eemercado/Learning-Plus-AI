@@ -55,7 +55,7 @@ const HomePage = () => {
         gap: '24px', 
         marginBottom: '24px'
       }}>
-        <a href="https://github.com/eemercado" className="text-2xl"> 
+        <a href="https://github.com/eemercado/Learning-Plus-AI?tab=readme-ov-file" className="text-2xl"> 
           <FaGithub />
         </a>
       </div>
