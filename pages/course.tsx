@@ -2,54 +2,66 @@ import Link from "next/link";
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 
-const subjects = [
-    { name: 'Mathematics', id: 1, price: 25 },
-    { name: 'English', id: 2, price: 25 },
-    { name: 'Science (Basic)', id: 3, price: 25 },
-    { name: 'History', id: 4, price: 25 },
-    { name: 'Geography', id: 5, price: 25 },
-    { name: 'Physics', id: 6, price: 25 },
-    { name: 'Chemistry', id: 7, price: 25 },
-    { name: 'Biology', id: 8, price: 25 },
-    { name: 'Programming', id: 9, price: 25 },
-    { name: 'Arts', id: 10, price: 25 }
-  ];
-  
-  const packages = [
-    { name: 'Basic Pack', price: 60, subjects: ['Mathematics', 'English', 'Science (Basic)'] },
-    { name: 'Extra Pack', price: 150, subjects: ['Mathematics', 'English', 'Science (Basic)', 'History', 'Geography', 'Physics', 'Chemistry', 'Biology'] },
-    { name: 'Pro Pack', price: 180, subjects: ['Mathematics', 'English', 'Science (Basic)', 'History', 'Geography', 'Physics', 'Chemistry', 'Biology', 'Programming', 'Arts'] }
-  ];
-  
-  const Course = () => {
-    const [selectedSubjects, setSelectedSubjects] = useState(new Map());
-    const [selectedPackage, setSelectedPackage] = useState(null);
-    const router = useRouter();
-  
-    const toggleSubjectSelection = subject => {
-      setSelectedSubjects(prev => {
-        const newSelection = new Map(prev);
-        if (newSelection.has(subject.name)) {
-          newSelection.delete(subject.name);
-        } else {
-          newSelection.set(subject.name, subject.price);
-        }
-        setSelectedPackage(null);
-        return newSelection;
-      });
-    };
-  
-    const selectPackage = packageOption => {
-      setSelectedPackage(packageOption);
-      const newSubjects = new Map();
-      packageOption.subjects.forEach(subject => {
-        const foundSubject = subjects.find(s => s.name === subject);
-        if (foundSubject) {
-          newSubjects.set(foundSubject.name, foundSubject.price);
-        }
-      });
-      setSelectedSubjects(newSubjects);
-    };
+interface Subject {
+  name: string;
+  id: number;
+  price: number;
+}
+
+interface Package {
+  name: string;
+  price: number;
+  subjects: string[];
+}
+
+const subjects: Subject[] = [
+  { name: 'Mathematics', id: 1, price: 25 },
+  { name: 'English', id: 2, price: 25 },
+  { name: 'Science (Basic)', id: 3, price: 25 },
+  { name: 'History', id: 4, price: 25 },
+  { name: 'Geography', id: 5, price: 25 },
+  { name: 'Physics', id: 6, price: 25 },
+  { name: 'Chemistry', id: 7, price: 25 },
+  { name: 'Biology', id: 8, price: 25 },
+  { name: 'Programming', id: 9, price: 25 },
+  { name: 'Arts', id: 10, price: 25 }
+];
+
+const packages: Package[] = [
+  { name: 'Basic Pack', price: 60, subjects: ['Mathematics', 'English', 'Science (Basic)'] },
+  { name: 'Extra Pack', price: 150, subjects: ['Mathematics', 'English', 'Science (Basic)', 'History', 'Geography', 'Physics', 'Chemistry', 'Biology'] },
+  { name: 'Pro Pack', price: 180, subjects: ['Mathematics', 'English', 'Science (Basic)', 'History', 'Geography', 'Physics', 'Chemistry', 'Biology', 'Programming', 'Arts'] }
+];
+
+const Course = () => {
+  const [selectedSubjects, setSelectedSubjects] = useState<Map<string, number>>(new Map());
+  const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
+  const router = useRouter();
+
+  const toggleSubjectSelection = (subject: Subject) => {
+    setSelectedSubjects(prev => {
+      const newSelection = new Map(prev);
+      if (newSelection.has(subject.name)) {
+        newSelection.delete(subject.name);
+      } else {
+        newSelection.set(subject.name, subject.price);
+      }
+      setSelectedPackage(null);
+      return newSelection;
+    });
+  };
+
+  const selectPackage = (packageOption: Package) => {
+    setSelectedPackage(packageOption);
+    const newSubjects = new Map<string, number>();
+    packageOption.subjects.forEach(subject => {
+      const foundSubject = subjects.find(s => s.name === subject);
+      if (foundSubject) {
+        newSubjects.set(foundSubject.name, foundSubject.price);
+      }
+    });
+    setSelectedSubjects(newSubjects);
+  };
   
     const handlePaymentClick = () => {
         if (!selectedPackage) {
