@@ -1,11 +1,16 @@
 import Link from "next/link";
 import React, { useState, useEffect } from 'react';
 
+interface Message {
+    text: string;
+    from: string;
+}
+
 const AIPage = () => {
-    const [inputText, setInputText] = useState('');
-    const [messages, setMessages] = useState([]);
-    const [selectedSubject, setSelectedSubject] = useState('History');
-    const [selectedYear, setSelectedYear] = useState('Year 1');
+    const [inputText, setInputText] = useState<string>('');
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [selectedSubject, setSelectedSubject] = useState<string>('Mathematics');
+    const [selectedYear, setSelectedYear] = useState<string>('Year 1');
 
     useEffect(() => {
         setMessages([{ text: `Welcome to Learning+ AI Chat! Enter your first question about ${selectedSubject} for ${selectedYear}.`, from: 'ai' }]);
@@ -22,7 +27,7 @@ const AIPage = () => {
         }
     };
 
-    const generateResponse = (inputText) => {
+    const generateResponse = (inputText: string): string => {
         if (inputText.toLowerCase().includes("pythagorean theorem")) {
             return "The Pythagorean theorem states that in a right triangle, the square of the hypotenuse is equal to the sum of the squares of the other two sides.";
         } else if (inputText.toLowerCase().includes("covalent bond")) {
@@ -33,14 +38,14 @@ const AIPage = () => {
         return "This is a simulated response.";
     };
 
-    const selectSubject = (subject) => {
+    const selectSubject = (subject: string) => {
         if (subject !== selectedSubject) {
             setMessages([{ text: `You have selected ${subject} for ${selectedYear}. Enter your questions!`, from: 'ai' }]);
             setSelectedSubject(subject);
         }
     };
 
-    const handleYearChange = (event) => {
+    const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedYear(event.target.value);
         setMessages([{ text: `You have changed to ${event.target.value}. Please ask your questions about ${selectedSubject}.`, from: 'ai' }]);
     };

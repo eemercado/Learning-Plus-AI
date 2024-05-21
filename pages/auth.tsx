@@ -29,7 +29,7 @@ const Auth = () => {
                 password,
                 redirect: false, 
             });
-            if (result.ok) {
+            if (result && result.ok) {
                 router.push('/ai/aiExtra'); 
             }
         } catch (error) {
