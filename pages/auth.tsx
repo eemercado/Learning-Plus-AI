@@ -43,7 +43,7 @@ const Auth = () => {
                 email,
                 name, 
                 password,
-                subscriptionPlan: 'Extra Plan' 
+                subscriptionPlan: 'Extra Plan', 
             });
             if (response.status === 200) {
                 router.push('/course'); 

@@ -9,7 +9,7 @@ interface Message {
 const AIPage = () => {
     const [inputText, setInputText] = useState<string>('');
     const [messages, setMessages] = useState<Message[]>([]);
-    const [selectedSubject, setSelectedSubject] = useState<string>('Mathematics');
+    const [selectedSubject, setSelectedSubject] = useState<string>('History');
     const [selectedYear, setSelectedYear] = useState<string>('Year 1');
 
     useEffect(() => {
