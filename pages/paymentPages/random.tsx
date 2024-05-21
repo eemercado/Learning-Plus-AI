@@ -27,7 +27,7 @@ const PaymentPage = () => {
                     <li>Chemistry</li>
                     <li>Arts</li>
                 </ul>
-                <p className="subtotal">SUBTOTAL: $150</p>
+                <p className="subtotal">SUBTOTAL: $75</p>
             </div>
             <div className="divider"></div>
             <div className="payment-container">
