@@ -9,7 +9,7 @@ const AIPage = () => {
 
     useEffect(() => {
         setMessages([{ text: `Welcome to Learning+ AI Chat! Enter your first question about ${selectedSubject} for ${selectedYear}.`, from: 'ai' }]);
-    }, []);
+    }, [selectedSubject, selectedYear]);
 
     const handleSendMessage = () => {
         if (inputText.trim()) {

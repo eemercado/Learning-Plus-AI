@@ -16,7 +16,7 @@ const BusinessGoalsPage = () => {
             <ul className="goals-list">
                 <li>
                     <h2>Interactive and Personalized Learning Experience</h2>
-                    <p>Utilizes AI to tailor the educational experience to each user's learning strengths and preferences, offering a unique, interactive, and adaptive learning solution.</p>
+                    <p>Utilizes AI to tailor the educational experience to each user&apos;s learning strengths and preferences, offering a unique, interactive, and adaptive learning solution.</p>
                 </li>
                 <li>
                     <h2>Accessibility and Convenience</h2>

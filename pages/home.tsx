@@ -20,9 +20,9 @@ const HomePage = () => {
         zIndex: 2,
         marginTop: '12px'
       }}>
-        <a href="/readMe" style={{ color: 'black', textDecoration: 'none' }}>
-          READ ME
-        </a>
+        <Link href="/readMe">
+          <span style={{ color: 'black', textDecoration: 'none' }}>READ ME</span>
+        </Link>
         <div> 
           <Link href="/auth">SIGN UP</Link>
           <span style={{ margin: '0 8px' }}></span>
